@@ -1,0 +1,323 @@
+@prefix : <http://sloanelab.org/> .
+@prefix crm: <http://erlangen-crm.org/current/> .
+@prefix crmdig: <http://www.ics.forth.gr/isl/CRMdig/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix slb: <http://sloanelab.org/> .
+@base <http://sloanelab.org/> .
+
+<http://sloanelab.org/> rdf:type owl:Ontology ;
+                         owl:imports <http://erlangen-crm.org/current/> ;
+                         owl:imports <http://www.ics.forth.gr/isl/CRMdig/> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://sloanelab.org/SL10_has_specific_type
+:SL10_has_specific_type rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf <http://erlangen-crm.org/current/P2_has_type> ;
+                        rdfs:domain :SL1_Catalogue_Item ;
+                        rdfs:range <http://erlangen-crm.org/current/E55_Type> ;
+                        rdfs:comment "Connects an instance of SL1 Catalogue Item to the E55 Type of the mentioned entity."@en ;
+                        rdfs:label "SL10 has specific type"@en .
+
+
+###  http://sloanelab.org/SL11_is_specifically_about
+:SL11_is_specifically_about rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf <http://erlangen-crm.org/current/P129_is_about> ;
+                            rdfs:domain :SL1_Catalogue_Item ;
+                            rdfs:range <http://erlangen-crm.org/current/E1_CRM_Entity> ;
+                            rdfs:comment "Connects an instance of SL1 Catalogue Item to the specific entity that is mentioned in it."@en ;
+                            rdfs:label "SL11 is specifically about"@en .
+
+
+###  http://sloanelab.org/SL12_has_confidence_degree
+:SL12_has_confidence_degree rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf <http://erlangen-crm.org/current/P2_has_type> ;
+                            rdfs:domain :SL1_Catalogue_Item ;
+                            rdfs:range <http://erlangen-crm.org/current/E55_Type> ;
+                            rdfs:comment "Connects an instance of SL10 Catalogue Item to its confidence degree."@en ;
+                            rdfs:label "SL12 has confidence degree"@en .
+
+
+###  http://sloanelab.org/SL15_believed_to_be_the_same_as
+:SL15_believed_to_be_the_same_as rdf:type owl:ObjectProperty ;
+                                 rdfs:domain <http://erlangen-crm.org/current/E1_CRM_Entity> ;
+                                 rdfs:range <http://erlangen-crm.org/current/E1_CRM_Entity> ;
+                                 rdfs:comment "Connects an entity to another entity that is believed to be the same. Can be used in the same way as owl:sameAs, but instead of expressing an identity, it merely expresses a belief that the identity may hold."@en ;
+                                 rdfs:label "SL15 believed to be the same as"@en .
+
+
+###  http://sloanelab.org/SL20_has_object_status
+:SL20_has_object_status rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf <http://erlangen-crm.org/current/P44_has_condition> ;
+                        rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                        rdfs:range <http://erlangen-crm.org/current/E3_Condition_State> ;
+                        rdfs:comment "Connects a catalogue entry or record to the status of the object described in it (e.g., registered / non-registered / ex-collection)."@en ;
+                        rdfs:label "SL20 has object status"@en .
+
+
+###  http://sloanelab.org/SL21_is_matched
+:SL21_is_matched rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf <http://erlangen-crm.org/current/P44_has_condition> ;
+                 rdf:type owl:AsymmetricProperty ;
+                 rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                 rdfs:range <http://erlangen-crm.org/current/E3_Condition_State> ;
+                 rdfs:comment "Connects a catalogue entry or record to a type indicating whether it has been successfully matched to another entry or record. For example, a historical catalogue entry could be matched to a contemporary record describing the same object."@en ;
+                 rdfs:label "SL21 is matched"@en .
+
+
+###  http://sloanelab.org/SL22_contains_elements_of
+:SL22_contains_elements_of rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://erlangen-crm.org/current/P130i_features_are_also_found_on> ;
+                           rdfs:domain <http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object> ;
+                           rdfs:range <http://erlangen-crm.org/current/E22_Human-Made_Object> ;
+                           rdfs:comment "Connects a digital dataset to a physical object (e.g., a manuscript) from which the information in the dataset has been extracted."@en ;
+                           rdfs:label "SL22 contains elements of"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://sloanelab.org/SL13_has_physical_description
+:SL13_has_physical_description rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                               rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                               rdfs:range xsd:string ;
+                               rdfs:label "SL13 has physical description"@en .
+
+
+###  http://sloanelab.org/SL14_has_curator_comment
+:SL14_has_curator_comment rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                          rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                          rdfs:range xsd:string ;
+                          rdfs:label "SL14 has curator comment"@en .
+
+
+###  http://sloanelab.org/SL16_has_object_history
+:SL16_has_object_history rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                         rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                         rdfs:range xsd:string ;
+                         rdfs:label "SL16 has object history"@en .
+
+
+###  http://sloanelab.org/SL17_has_scope_content
+:SL17_has_scope_content rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                        rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                        rdfs:range xsd:string ;
+                        rdfs:label "SL17 has scope content"@en .
+
+
+###  http://sloanelab.org/SL18_has_entry_number
+:SL18_has_entry_number rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                       rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                       rdfs:range xsd:integer ;
+                       rdfs:label "SL18 has entry number"@en .
+
+
+###  http://sloanelab.org/SL19_has_page_number
+:SL19_has_page_number rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf <http://erlangen-crm.org/current/P3_has_note> ;
+                      rdfs:domain <http://erlangen-crm.org/current/E73_Information_Object> ;
+                      rdfs:range xsd:integer ;
+                      rdfs:label "SL19 has page number"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://sloanelab.org/SL1_Catalogue_Item
+:SL1_Catalogue_Item rdf:type owl:Class ;
+                    rdfs:subClassOf <http://erlangen-crm.org/current/E73_Information_Object> ;
+                    rdfs:comment "Represents the section of a catalogue entry or record that refers to a specific entity, such as a person, place, or material." ;
+                    rdfs:label "SL1 Catalogue Item"@en .
+
+
+###  http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object
+<http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://erlangen-crm.org/current/E73_Information_Object> ;
+                                                       rdfs:label "D1 Digital Object"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://sloanelab.org/E3/ex_collection
+<http://sloanelab.org/E3/ex_collection> rdf:type owl:NamedIndividual ;
+                                        rdfs:label "ex-collection"@en .
+
+
+###  http://sloanelab.org/E3/matched
+<http://sloanelab.org/E3/matched> rdf:type owl:NamedIndividual ,
+                                           <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                  rdfs:label "matched"@en .
+
+
+###  http://sloanelab.org/E3/matched_uncertain
+<http://sloanelab.org/E3/matched_uncertain> rdf:type owl:NamedIndividual ,
+                                                     <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                            rdfs:label "matched uncertain"@en .
+
+
+###  http://sloanelab.org/E3/non_registered
+<http://sloanelab.org/E3/non_registered> rdf:type owl:NamedIndividual ,
+                                                  <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                         rdfs:label "non-registered"@en .
+
+
+###  http://sloanelab.org/E3/registered
+<http://sloanelab.org/E3/registered> rdf:type owl:NamedIndividual ,
+                                              <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                     rdfs:label "registered"@en .
+
+
+###  http://sloanelab.org/E3/unknown
+<http://sloanelab.org/E3/unknown> rdf:type owl:NamedIndividual ,
+                                           <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                  rdfs:label "unknown"@en .
+
+
+###  http://sloanelab.org/E3/unmatched
+<http://sloanelab.org/E3/unmatched> rdf:type owl:NamedIndividual ,
+                                             <http://erlangen-crm.org/current/E3_Condition_State> ;
+                                    rdfs:label "unmatched"@en .
+
+
+###  http://sloanelab.org/E55/author
+<http://sloanelab.org/E55/author> rdf:type owl:NamedIndividual ,
+                                           <http://erlangen-crm.org/current/E55_Type> ;
+                                  rdfs:label "author"@en .
+
+
+###  http://sloanelab.org/E55/historia_plantarum_dataset
+<http://sloanelab.org/E55/historia_plantarum_dataset> rdf:type owl:NamedIndividual ,
+                                                               <http://erlangen-crm.org/current/E55_Type> ;
+                                                      rdfs:label "Historia Plantarum dataset"@en .
+
+
+###  http://sloanelab.org/E55/historia_plantarum_entry
+<http://sloanelab.org/E55/historia_plantarum_entry> rdf:type owl:NamedIndividual ,
+                                                             <http://erlangen-crm.org/current/E55_Type> ;
+                                                    rdfs:label "Historia Plantarum entry"@en .
+
+
+###  http://sloanelab.org/E55/historia_plantarum_footer
+<http://sloanelab.org/E55/historia_plantarum_footer> rdf:type owl:NamedIndividual ,
+                                                              <http://erlangen-crm.org/current/E55_Type> ;
+                                                     rdfs:label "Historia Plantarum footer"@en .
+
+
+###  http://sloanelab.org/E55/historia_plantarum_header
+<http://sloanelab.org/E55/historia_plantarum_header> rdf:type owl:NamedIndividual ,
+                                                              <http://erlangen-crm.org/current/E55_Type> ;
+                                                     rdfs:label "Historia Plantarum header"@en .
+
+
+###  http://sloanelab.org/E55/historia_plantarum_marginalia
+<http://sloanelab.org/E55/historia_plantarum_marginalia> rdf:type owl:NamedIndividual ,
+                                                                  <http://erlangen-crm.org/current/E55_Type> ;
+                                                         rdfs:label "Historia Plantarum marginalia"@en .
+
+
+###  http://sloanelab.org/E55/historical_catalogue
+<http://sloanelab.org/E55/historical_catalogue> rdf:type owl:NamedIndividual ,
+                                                         <http://erlangen-crm.org/current/E55_Type> ;
+                                                rdfs:label "historical catalogue"@en .
+
+
+###  http://sloanelab.org/E55/historical_catalogue_entry
+<http://sloanelab.org/E55/historical_catalogue_entry> rdf:type owl:NamedIndividual ,
+                                                               <http://erlangen-crm.org/current/E55_Type> ;
+                                                      rdfs:label "historical catalogue entry"@en .
+
+
+###  http://sloanelab.org/E55/historical_dataset
+<http://sloanelab.org/E55/historical_dataset> rdf:type owl:NamedIndividual ,
+                                                       <http://erlangen-crm.org/current/E55_Type> ;
+                                              rdfs:label "historical dataset"@en .
+
+
+###  http://sloanelab.org/E55/inscription
+<http://sloanelab.org/E55/inscription> rdf:type owl:NamedIndividual ,
+                                                <http://erlangen-crm.org/current/E55_Type> ;
+                                       rdfs:label "inscription"@en .
+
+
+###  http://sloanelab.org/E55/library_dataset
+<http://sloanelab.org/E55/library_dataset> rdf:type owl:NamedIndividual ,
+                                                    <http://erlangen-crm.org/current/E55_Type> ;
+                                           rdfs:label "library dataset"@en .
+
+
+###  http://sloanelab.org/E55/library_record
+<http://sloanelab.org/E55/library_record> rdf:type owl:NamedIndividual ,
+                                                   <http://erlangen-crm.org/current/E55_Type> ;
+                                          rdfs:label "library record"@en .
+
+
+###  http://sloanelab.org/E55/manuscript
+<http://sloanelab.org/E55/manuscript> rdf:type owl:NamedIndividual ,
+                                               <http://erlangen-crm.org/current/E55_Type> ;
+                                      rdfs:label "manuscript"@en .
+
+
+###  http://sloanelab.org/E55/material
+<http://sloanelab.org/E55/material> rdf:type owl:NamedIndividual ,
+                                             <http://erlangen-crm.org/current/E55_Type> ;
+                                    rdfs:label "material"@en .
+
+
+###  http://sloanelab.org/E55/museum_dataset
+<http://sloanelab.org/E55/museum_dataset> rdf:type owl:NamedIndividual ,
+                                                   <http://erlangen-crm.org/current/E55_Type> ;
+                                          rdfs:label "museum dataset"@en .
+
+
+###  http://sloanelab.org/E55/museum_record
+<http://sloanelab.org/E55/museum_record> rdf:type owl:NamedIndividual ,
+                                                  <http://erlangen-crm.org/current/E55_Type> ;
+                                         rdfs:label "museum record"@en .
+
+
+###  http://sloanelab.org/E55/object_type
+<http://sloanelab.org/E55/object_type> rdf:type owl:NamedIndividual ,
+                                                <http://erlangen-crm.org/current/E55_Type> ;
+                                       rdfs:label "object type"@en .
+
+
+###  http://sloanelab.org/E55/place_of_publication
+<http://sloanelab.org/E55/place_of_publication> rdf:type owl:NamedIndividual ,
+                                                         <http://erlangen-crm.org/current/E55_Type> ;
+                                                rdfs:label "place of publication"@en .
+
+
+###  http://sloanelab.org/E55/species
+<http://sloanelab.org/E55/species> rdf:type owl:NamedIndividual ,
+                                            <http://erlangen-crm.org/current/E55_Type> ;
+                                   rdfs:label "species"@en .
+
+
+###  http://sloanelab.org/E55/subject
+<http://sloanelab.org/E55/subject> rdf:type owl:NamedIndividual ,
+                                            <http://erlangen-crm.org/current/E55_Type> ;
+                                   rdfs:label "subject"@en .
+
+
+###  http://sloanelab.org/E55/technique
+<http://sloanelab.org/E55/technique> rdf:type owl:NamedIndividual ,
+                                              <http://erlangen-crm.org/current/E55_Type> ;
+                                     rdfs:label "technique"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
